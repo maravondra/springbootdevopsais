@@ -1,6 +1,8 @@
 package cz.engeto.demo.controller;
 
 import cz.engeto.demo.controller.dto.Login;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +21,7 @@ public class LogInController {
     );
 
     @PostMapping("login")
-    public boolean makeLogIn(
+    public ResponseEntity makeLogIn(
         @RequestBody Login dataForLogin
     ){
         Optional<Login> findUserAccordingUsername =
@@ -29,9 +31,17 @@ public class LogInController {
                 .findFirst();
 
         if(findUserAccordingUsername.isEmpty()){
-            return false;
+            return new ResponseEntity(
+                    "The user "+dataForLogin.getUsername() + " was not found",
+                    HttpStatus.UNAUTHORIZED);
         }else {
-            return  (findUserAccordingUsername.get().getPassword().equals(dataForLogin.getPassword()));
+            if (findUserAccordingUsername.get().getPassword().equals(dataForLogin.getPassword())){
+                return new ResponseEntity(HttpStatus.OK);
+            }else {
+                return new ResponseEntity(
+                        "The password for the user (" + dataForLogin.getUsername() + ") is not valid",
+                        HttpStatus.UNAUTHORIZED);
+            }
         }
 
 
