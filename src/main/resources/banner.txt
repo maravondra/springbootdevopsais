@@ -1,0 +1,10 @@
+ 88888888b                              dP
+ 88                                     88
+a88aaaa    88d888b. .d8888b. .d8888b. d8888P .d8888b.
+ 88        88'  `88 88'  `88 88ooood8   88   88'  `88
+ 88        88    88 88.  .88 88.  ...   88   88.  .88
+ 88888888P dP    dP `8888P88 `88888P'   dP   `88888P'
+ooooooooooooooooooooo~~~~.88~ooooooooooooooooooooooooo
+                     d8888P
+${spring.application.name} ${application.version}
+Powered by Spring Boot ${spring-boot.version}
