@@ -3,6 +3,7 @@ package cz.engeto.demo.controller;
 import cz.engeto.demo.controller.dto.Login;
 import cz.engeto.demo.controller.dto.LoginResponse;
 import cz.engeto.demo.service.LogInService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +18,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v3/")
+@RequiredArgsConstructor
 public class LogInController {
 
-    @Autowired
-    private LogInService logInService;
+    private final LogInService logInService;
 
     @PostMapping("login")
     public ResponseEntity makeLogIn(
